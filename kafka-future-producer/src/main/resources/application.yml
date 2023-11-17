@@ -2,4 +2,4 @@ spring:
   kafka:
     bootstrap-servers: "192.168.0.81:11090"
     consumer:
-      group-id: "kafka-future"
+      group-id: "SpringConsumer"

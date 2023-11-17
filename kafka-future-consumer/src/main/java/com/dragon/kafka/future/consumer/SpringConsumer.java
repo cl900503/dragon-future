@@ -5,7 +5,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Consumer {
+public class SpringConsumer {
 	
     @KafkaListener(topics = "topic_chen")
     public void processMessage(ConsumerRecord<String, String> consumerRecord) {
