@@ -11,7 +11,6 @@ public class Producer {
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
 	public void sendMessage() {
-		System.out.println(kafkaTemplate.getProducerFactory().getConfigurationProperties());
 		kafkaTemplate.send("topic_chen", "1");
 	}
 
