@@ -26,13 +26,18 @@ public class NativeConsumer {
 		props.put("group.id", "NativeConsumer");
 
 		Consumer<String, String> consumer = new KafkaConsumer<String, String>(props);
-		consumer.subscribe(Collections.singletonList("topic_chen"));
-
-		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-			for (ConsumerRecord<String, String> record : records) {
-				System.out.println("消费端：" + record);
+		try {
+			consumer.subscribe(Collections.singletonList("topic_chen"));
+			while (true) {
+				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+				for (ConsumerRecord<String, String> record : records) {
+					System.out.println("消费端：" + record);
+				}
 			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			consumer.close();
 		}
 
 	}
