@@ -16,9 +16,6 @@ public class NativeConsumer {
 		Properties props = new Properties();
 		// 使用ssl端口
 		props.put("bootstrap.servers", "192.168.0.81:11090");
-		// serializer
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		// deserializer
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
