@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dragon</groupId>
-	<artifactId>kafka-future-consumer</artifactId>
+	<artifactId>dragon-kafka-future-producer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-future-consumer</name>
-	<description>kafka-future-consumer</description>
+	<name>dragon-kafka-future-producer</name>
+	<description>dragon-kafka-future-producer</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
