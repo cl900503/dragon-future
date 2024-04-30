@@ -1,22 +1,18 @@
 package com.dragon.elasticsearch.future.client;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Arrays;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 
-import com.dragon.elasticsearch.future.domain.User;
-
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
-import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.ExistsQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch._types.query_dsl.WildcardQuery;
-import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryRequest;
+import co.elastic.clients.elasticsearch.core.DeleteByQueryResponse;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
@@ -62,34 +58,38 @@ public class NativeClient {
 //		
 //		System.out.println(response);
 		
-		Query byName = WildcardQuery.of(m -> m.field("name").value("chenlong*"))._toQuery();
-
-		Query setmatch = MatchQuery.of(m -> m.field("searchSetting.props$name").query("1"))._toQuery();
-
-		Query setexists = ExistsQuery.of(m -> m.field("searchSetting.props$name"))._toQuery();
-		
-		Query notsetexists = BoolQuery.of(m->m.mustNot(setexists))._toQuery();
-
-		Query setting = BoolQuery.of(b -> b.should(setmatch).should(notsetexists))._toQuery();
-		
-		SearchResponse<User> response = esClient.search(s -> s
-		    .index("users")
-		    .query(q -> q
-		        .bool(b -> b 
-		            .must(byName) 
-		            .must(setting)
-		        )
-		    ),
-		    User.class
-		);
-
-		List<Hit<User>> hits = response.hits().hits();
-		for (Hit<User> hit : hits) {
-			User user = hit.source();
-			System.out.println(user);
-		}
+//		Query byName = WildcardQuery.of(m -> m.field("name").value("chenlong*"))._toQuery();
+//
+//		Query setmatch = MatchQuery.of(m -> m.field("searchSetting.props$name").query("1"))._toQuery();
+//
+//		Query setexists = ExistsQuery.of(m -> m.field("searchSetting.props$name"))._toQuery();
+//		
+//		Query notsetexists = BoolQuery.of(m->m.mustNot(setexists))._toQuery();
+//
+//		Query setting = BoolQuery.of(b -> b.should(setmatch).should(notsetexists))._toQuery();
+//		
+//		SearchResponse<User> response = esClient.search(s -> s
+//		    .index("users")
+//		    .query(q -> q
+//		        .bool(b -> b 
+//		            .must(byName) 
+//		            .must(setting)
+//		        )
+//		    ),
+//		    User.class
+//		);
+//
+//		List<Hit<User>> hits = response.hits().hits();
+//		for (Hit<User> hit : hits) {
+//			User user = hit.source();
+//			System.out.println(user);
+//		}
 
 //		System.out.println(response.hits().hits());
+		Query value = RangeQuery.of(m -> m.field("loginTime").lt(JsonData.of(1714111868356L)))._toQuery();
+		DeleteByQueryRequest request = new DeleteByQueryRequest.Builder().index(Arrays.asList("statistics_index_name")).query(value).build();
+		DeleteByQueryResponse deleteByQuery = esClient.deleteByQuery(request);
+		System.out.println(deleteByQuery);
 		
 	}
 }
