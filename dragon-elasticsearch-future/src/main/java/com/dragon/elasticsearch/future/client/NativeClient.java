@@ -37,7 +37,7 @@ public class NativeClient {
 		    restClient, new JacksonJsonpMapper());
 
 		// And create the API client
-		ElasticsearchClient esClient = new ElasticsearchClient(transport);
+		ElasticsearchClient elasticsearchClient = new ElasticsearchClient(transport);
 
 //		// Creating an index
 //		CreateIndexResponse createIndexResponse = esClient.indices().create(c -> c.index("users"));
@@ -86,10 +86,18 @@ public class NativeClient {
 //		}
 
 //		System.out.println(response.hits().hits());
-		Query value = RangeQuery.of(m -> m.field("loginTime").lt(JsonData.of(1714111868356L)))._toQuery();
-		DeleteByQueryRequest request = new DeleteByQueryRequest.Builder().index(Arrays.asList("statistics_index_name")).query(value).build();
-		DeleteByQueryResponse deleteByQuery = esClient.deleteByQuery(request);
-		System.out.println(deleteByQuery);
+//		Query value = RangeQuery.of(m -> m.field("loginTime").lt(JsonData.of(1714111868356L)))._toQuery();
+//		DeleteByQueryRequest request = new DeleteByQueryRequest.Builder().index(Arrays.asList("statistics_index_name")).query(value).build();
+//		DeleteByQueryResponse deleteByQuery = esClient.deleteByQuery(request);
+//		System.out.println(deleteByQuery);
+		
+		long timestamp = System.currentTimeMillis() - (1 * 86400L * 1000L);
+		// 清理 elasticsearch
+		Query value = RangeQuery.of(m -> m.field("loginTime").lt(JsonData.of(timestamp)))._toQuery();
+		DeleteByQueryRequest request = new DeleteByQueryRequest.Builder().index(Arrays.asList("statistics_index_name"))
+				.query(value).build();
+		DeleteByQueryResponse response = elasticsearchClient.deleteByQuery(request);
+		System.out.println(response);
 		
 	}
 }
