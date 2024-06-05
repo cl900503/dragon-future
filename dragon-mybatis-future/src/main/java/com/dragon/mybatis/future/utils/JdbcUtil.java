@@ -1,7 +1,4 @@
-package com.dragon.mybatis.future.tools;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.dragon.mybatis.future.utils;
 
 import com.dragon.mybatis.future.entity.DataSourceInfo;
 
@@ -13,10 +10,10 @@ import com.dragon.mybatis.future.entity.DataSourceInfo;
  */
 public class JdbcUtil {
 
-	/**
-	 * 日志对象
-	 */
-	private static Logger logger = LoggerFactory.getLogger(JdbcUtil.class);
+//	/**
+//	 * 日志对象
+//	 */
+//	private static Logger logger = LoggerFactory.getLogger(JdbcUtil.class);
 
 	/**
 	 * 根据databaseId获取driverClass
