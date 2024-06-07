@@ -15,6 +15,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.dragon.mybatis.future.config.DragonDataSource;
 import com.dragon.mybatis.future.entity.DataSourceProperties;
 import com.dragon.mybatis.future.utils.DataSourceUtil;
+import com.dragon.mybatis.future.utils.LookupKeyUtil;
 
 @SpringBootTest
 class MybatisFutureApplicationTests {
@@ -38,7 +39,11 @@ class MybatisFutureApplicationTests {
 //		DataSource dataSource = new DragonDataSource();
 //		DataSource dataSource = DataSourceConfig.createDataSource();
 
+		
+		LookupKeyUtil.setLookupKey("192.168.0.81");
+		
 		for (int i = 0; i < 10; i++) {
+			System.out.println(i);
 			Connection connection = dataSource.getConnection();
 			PreparedStatement prepareStatement = connection.prepareStatement("SELECT version()");
 			ResultSet resultSet = prepareStatement.executeQuery();
@@ -46,9 +51,13 @@ class MybatisFutureApplicationTests {
 				System.out.println(resultSet.getString(1));
 //				logger.debug(resultSet.getString(1));
 			}
-			resultSet.close();
-			connection.close();
+//			resultSet.close();
+//			connection.close();
 		}
+
+		
+		
+		LookupKeyUtil.setLookupKey("192.168.0.85");
 		
 		
 		

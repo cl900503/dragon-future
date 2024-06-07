@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.dragon.mybatis.future.entity.DataSourceInfo;
 import com.dragon.mybatis.future.entity.DataSourceProperties;
 import com.dragon.mybatis.future.utils.JdbcUtil;
+import com.dragon.mybatis.future.utils.LookupKeyUtil;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Component
@@ -21,7 +22,7 @@ public class DragonDataSource extends AbstractRoutingDataSource {
 
 	@Override
 	protected Object determineCurrentLookupKey() {
-		return "IM_TIMESTAMP";
+		return LookupKeyUtil.getLookupKey();
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class DragonDataSource extends AbstractRoutingDataSource {
 				// maxActive
 				dataSource.setMaximumPoolSize(4);
 				// 连接建立超时时间
-				dataSource.setConnectionTimeout(5000);
+				dataSource.setConnectionTimeout(250);
 				// 空闲连接超时时间 60s
 				dataSource.setIdleTimeout(60000);
 				// 连接测试时间
