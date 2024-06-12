@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.bson.Document;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -15,8 +15,10 @@ import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import com.dragon.mongo.future.domain.User;
+import com.mongodb.client.result.UpdateResult;
 
 @SpringBootTest
 class MongoFutureApplicationTests {
@@ -72,6 +74,23 @@ class MongoFutureApplicationTests {
 		users.add(user2);
 		Collection<User> result = mongoTemplate.insertAll(users);
 		System.out.println(result);
+	}
+
+	@Test
+	void testUpdate() {
+		Query query = new Query(Criteria.where("userId").is(1001L));
+		Update update = new Update().set("userName", "小明明");
+		UpdateResult updateFirst = mongoTemplate.updateFirst(query, update, User.class);
+		System.out.println(updateFirst);
+	}
+
+	@Test
+	void testFindAndModify() {
+		Query query = new Query(Criteria.where("userId").is(1004L));
+		Update update = new Update().set("userName", "小王王");
+		FindAndModifyOptions findAndModifyOptions = FindAndModifyOptions.options().returnNew(true);
+		User user = mongoTemplate.findAndModify(query, update, findAndModifyOptions, User.class);
+		System.out.println(user);
 	}
 
 }
