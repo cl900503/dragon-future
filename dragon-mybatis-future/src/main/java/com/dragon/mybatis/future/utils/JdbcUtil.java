@@ -78,7 +78,7 @@ public class JdbcUtil {
 		case "mysql":
 			jdbcUrl = "jdbc:mysql://" + dataSourceInfo.getIp() + ":" + dataSourceInfo.getPort() + "/"
 					+ dataSourceInfo.getDatabaseName()
-					+ "?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+					+ "?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&xxxxxxxxxxxx=11111111111";
 			break;
 		// 金仓
 		case "kingBase":

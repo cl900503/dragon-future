@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dragon</groupId>
-	<artifactId>dragon-redis-future</artifactId>
+	<artifactId>dragon-websocket-future</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dragon-redis-future</name>
-	<description>dragon-redis-future</description>
+	<name>dragon-websocket-future</name>
+	<description>dragon-websocket-future</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -34,32 +34,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-		<!-- 用于 PEM 解析 -->
-		<!-- 
-		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcpkix-jdk15on</artifactId>
-		    <version>1.70</version> 
-		</dependency>
-		-->
-
-		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk18on -->
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcpkix-jdk18on</artifactId>
-			<version>1.79</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson</artifactId>
-			<version>3.41.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

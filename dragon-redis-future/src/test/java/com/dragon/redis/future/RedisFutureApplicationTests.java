@@ -13,8 +13,8 @@ class RedisFutureApplicationTests {
 
 	@Test
 	void Test() {
-		redisTemplate.opsForValue().set("aa", "100");
-		String value = redisTemplate.opsForValue().get("aa");
+		
+		String value = redisTemplate.opsForValue().get("slot:10966:curid");
 		System.out.println(value);
 	}
 

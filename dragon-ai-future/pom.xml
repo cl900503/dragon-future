@@ -6,16 +6,16 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>3.3.7</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dragon</groupId>
-	<artifactId>dragon-redis-future</artifactId>
+	<artifactId>dragon-ai-future</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dragon-redis-future</name>
-	<description>dragon-redis-future</description>
+	<name>dragon-ai-future</name>
+	<description>dragon-ai-future</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,32 +34,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-		<!-- 用于 PEM 解析 -->
-		<!-- 
-		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcpkix-jdk15on</artifactId>
-		    <version>1.70</version> 
-		</dependency>
-		-->
-
-		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk18on -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcpkix-jdk18on</artifactId>
-			<version>1.79</version>
+			<artifactId>bcprov-jdk18on</artifactId>
+			<version>1.76</version>
 		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
 		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson</artifactId>
-			<version>3.41.0</version>
+		    <groupId>com.google.crypto.tink</groupId>
+		    <artifactId>tink</artifactId>
+		    <version>1.11.0</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -81,5 +67,16 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

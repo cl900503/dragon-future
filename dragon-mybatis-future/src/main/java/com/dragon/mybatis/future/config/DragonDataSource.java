@@ -49,7 +49,7 @@ public class DragonDataSource extends AbstractRoutingDataSource {
 				// maxActive
 				dataSource.setMaximumPoolSize(4);
 				// 连接建立超时时间
-				dataSource.setConnectionTimeout(250);
+				dataSource.setConnectionTimeout(5000);
 				// 空闲连接超时时间 60s
 				dataSource.setIdleTimeout(60000);
 				// 连接测试时间

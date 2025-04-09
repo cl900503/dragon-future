@@ -51,8 +51,8 @@ class MybatisFutureApplicationTests {
 				System.out.println(resultSet.getString(1));
 //				logger.debug(resultSet.getString(1));
 			}
-//			resultSet.close();
-//			connection.close();
+			resultSet.close();
+			connection.close();
 		}
 
 		

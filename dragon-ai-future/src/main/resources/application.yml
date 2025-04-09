@@ -1,5 +1,5 @@
 spring:  
   redis:
-    host: 192.168.081
+    host: 192.168.0.81
     port: 11080
     password: q7ZtCl^5S3

@@ -105,8 +105,8 @@ class MongoFutureApplicationTests {
 		Update update1 = new Update().set("userName", "小王");
 		Pair<Query, Update> updatePair1 = Pair.of(query1, update1);
 
-		Query query2 = new Query(Criteria.where("userId").is(1002L));
-		Update update2 = new Update().set("userName", "小红");
+		Query query2 = new Query(Criteria.where("userId").is(1003L));
+		Update update2 = new Update().set("userName", "小绿");
 		Pair<Query, Update> updatePair2 = Pair.of(query2, update2);
 
 		List<Pair<Query, Update>> updateList = new ArrayList<>();
